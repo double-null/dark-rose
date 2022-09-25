@@ -3,7 +3,12 @@ import configparser
 import pyautogui
 import time
 
-pyautogui.PAUSE = 0.5
+config = configparser.ConfigParser()
+config.read('config.ini')
+dk_start = config['SERVER_LINKS']['dk_start']
+dk_server = config['SERVER_LINKS']['dk_server']
+speed = config['MAIN']['speed_click']
+pyautogui.PAUSE = float(speed)
 
 screen_size_x, screen_size_y = pyautogui.size()
 
@@ -13,11 +18,6 @@ if screen_size_x == 1920 and screen_size_y == 1080:
         while (line := file.readline().rstrip()):
             account = line.split(':')
             servers = account[2].split('.')
-
-            config = configparser.ConfigParser()
-            config.read('config.ini')
-            dk_start = config['SERVER_LINKS']['dk_start']
-            dk_server = config['SERVER_LINKS']['dk_server']
 
             # Login...
             pyautogui.click(580, 820)
@@ -35,7 +35,7 @@ if screen_size_x == 1920 and screen_size_y == 1080:
 
                 # Check Loading
                 start_time = datetime.now()
-                finish_time = start_time + timedelta(minutes=1)
+                finish_time = start_time + timedelta(seconds=25)
                 loading = 0
 
                 while start_time < finish_time:
@@ -47,20 +47,25 @@ if screen_size_x == 1920 and screen_size_y == 1080:
 
                 # Actions
                 if loading:
+                    # Waiting
+                    time.sleep(2)
+
                     # Flowers
                     pyautogui.click(hearts_image)
                     pyautogui.click(1050, 720)
                     pyautogui.click(1200, 720)
                     time.sleep(1)
                     pyautogui.click(1880, 130)
+                    time.sleep(1)
 
                     # Daily
-                    image = "images/first.png"
-                    button = pyautogui.locateOnScreen(image, confidence=0.7)
-                    pyautogui.click(button)
+                    #image = "images/first.png"
+                    #button = pyautogui.locateOnScreen(image, confidence=0.7)
+                    pyautogui.click(1800, 210)
                     pyautogui.click(580, 520)
                     pyautogui.click(840, 320)
                     pyautogui.click(820, 500)
+                    pyautogui.click(900, 720)
                     pyautogui.click(1000, 320)
                     pyautogui.click(900, 440)
                     pyautogui.click(920, 630)
@@ -76,3 +81,5 @@ if screen_size_x == 1920 and screen_size_y == 1080:
             pyautogui.click(500, 840)
 else:
     print("Error display")
+
+input('Press ENTER to exit')
