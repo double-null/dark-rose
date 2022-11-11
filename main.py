@@ -8,7 +8,10 @@ config.read('config.ini')
 dk_start = config['SERVER_LINKS']['dk_start']
 dk_server = config['SERVER_LINKS']['dk_server']
 speed = config['MAIN']['speed_click']
+actions = config['ACTIONS']
 pyautogui.PAUSE = float(speed)
+
+print(actions['daily'])
 
 screen_size_x, screen_size_y = pyautogui.size()
 
@@ -50,25 +53,30 @@ if screen_size_x == 1920 and screen_size_y == 1080:
                     # Waiting
                     time.sleep(2)
 
-                    # Flowers
-                    pyautogui.click(hearts_image)
-                    pyautogui.click(1050, 720)
-                    pyautogui.click(1200, 720)
-                    time.sleep(1)
-                    pyautogui.click(1880, 130)
-                    time.sleep(1)
+                    if int(actions['flowers']) == 1:
+                        pyautogui.click(hearts_image)
+                        pyautogui.click(1050, 720)
+                        pyautogui.click(1200, 720)
+                        time.sleep(1)
+                        pyautogui.click(1880, 130)
+                        time.sleep(1)
 
-                    # Daily
-                    #image = "images/first.png"
-                    #button = pyautogui.locateOnScreen(image, confidence=0.7)
-                    pyautogui.click(1800, 210)
-                    pyautogui.click(580, 520)
-                    pyautogui.click(840, 320)
-                    pyautogui.click(820, 500)
-                    pyautogui.click(900, 720)
-                    pyautogui.click(1000, 320)
-                    pyautogui.click(900, 440)
-                    pyautogui.click(920, 630)
+                    if int(actions['daily']) == 1:
+                        #image = "images/first.png"
+                        #button = pyautogui.locateOnScreen(image, confidence=0.7)
+                        pyautogui.click(1800, 210)
+                        pyautogui.click(580, 520)
+                        pyautogui.click(840, 320)
+                        pyautogui.click(820, 500)
+                        pyautogui.click(900, 720)
+                        pyautogui.click(1000, 320)
+                        pyautogui.click(900, 440)
+                        pyautogui.click(920, 630)
+
+                    if int(actions['mailbox']) == 1:
+                        pyautogui.click(1775, 160)
+                        pyautogui.click(790, 755)
+                        pyautogui.click(1080, 755)
 
                     # Close tab
                     pyautogui.click(240, 15)
