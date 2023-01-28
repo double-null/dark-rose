@@ -78,6 +78,21 @@ if screen_size_x == 1920 and screen_size_y == 1080:
                         pyautogui.click(790, 755)
                         pyautogui.click(1080, 755)
 
+                    if int(actions['custom']) == 1:
+                        with open('custom.txt') as custom_file:
+                            while (line := custom_file.readline().rstrip()):
+                                command = line.split(' ')
+
+                                if (command[0] == 'click'):
+                                    pyautogui.click(int(command[1]), int(command[2]))
+
+                                if (command[0] == 'wait'):
+                                    time.sleep(int(command[1]))
+
+                                if (command[0] == 'image'):
+                                    image = pyautogui.locateOnScreen('images/' + command[1], confidence=0.7)
+                                    pyautogui.click(image)
+
                     # Close tab
                     pyautogui.click(240, 15)
 
