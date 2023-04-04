@@ -54,6 +54,7 @@ if screen_size_x == 1920 and screen_size_y == 1080:
                     time.sleep(2)
 
                     if int(actions['flowers']) == 1:
+
                         pyautogui.click(hearts_image)
                         pyautogui.click(1050, 720)
                         pyautogui.click(1200, 720)
@@ -66,6 +67,11 @@ if screen_size_x == 1920 and screen_size_y == 1080:
                         #button = pyautogui.locateOnScreen(image, confidence=0.7)
                         pyautogui.click(1800, 210)
                         pyautogui.click(580, 520)
+
+                        pyautogui.click(730, 325)
+                        pyautogui.click(785, 795)
+                        pyautogui.click(910, 645)
+
                         pyautogui.click(840, 320)
                         pyautogui.click(820, 500)
                         pyautogui.click(900, 720)
