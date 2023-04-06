@@ -79,10 +79,45 @@ if screen_size_x == 1920 and screen_size_y == 1080:
                         pyautogui.click(900, 440)
                         pyautogui.click(920, 630)
 
+                        cancelBtnColor = pyautogui.pixel(980, 640)
+                        if cancelBtnColor[0] == 0 and cancelBtnColor[1] > 60 :
+                            pyautogui.click(980, 640)
+
+                        pyautogui.click(1430, 285)
+
                     if int(actions['mailbox']) == 1:
                         pyautogui.click(1775, 160)
                         pyautogui.click(790, 755)
                         pyautogui.click(1080, 755)
+
+                    if int(actions['crypt']) == 1:
+                        # Start crypt
+                        cryptIcon = pyautogui.locateOnScreen(
+                            "images/crypt.png",
+                            confidence=0.7
+                        )
+                        pyautogui.click(cryptIcon)
+                        time.sleep(0.5)
+
+                        # Get reward
+                        rewardBtnColor = pyautogui.pixel(880, 525)
+                        if rewardBtnColor[1] > 90 :
+                            pyautogui.click(880, 525)
+                            time.sleep(3)
+
+                        # Install crypt
+                        blitzBtnColor = pyautogui.pixel(1280, 625)
+                        cancelBlitzBtnColor = pyautogui.pixel(1260, 520)
+                        if (blitzBtnColor[1] > 90 and cancelBlitzBtnColor[0] < 200) :
+                            pyautogui.click(1240, 640)
+                            pyautogui.click(970, 480)
+                            pyautogui.write('99')
+                            pyautogui.click(1000, 525)
+                            pyautogui.click(900, 640)
+
+                        # Close crypt
+                        pyautogui.click(1315, 320)
+
 
                     if int(actions['custom']) == 1:
                         with open('custom.txt') as custom_file:
