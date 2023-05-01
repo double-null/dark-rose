@@ -11,8 +11,6 @@ speed = config['MAIN']['speed_click']
 actions = config['ACTIONS']
 pyautogui.PAUSE = float(speed)
 
-print(actions['daily'])
-
 screen_size_x, screen_size_y = pyautogui.size()
 
 if screen_size_x == 1920 and screen_size_y == 1080:
@@ -68,13 +66,23 @@ if screen_size_x == 1920 and screen_size_y == 1080:
                         pyautogui.click(1800, 210)
                         pyautogui.click(580, 520)
 
-                        pyautogui.click(730, 325)
-                        pyautogui.click(785, 795)
-                        pyautogui.click(910, 645)
+                        # 2 Tab
+                        secondTabColor = pyautogui.pixel(777, 320)
+                        if (secondTabColor != (44, 44, 44)): # active (not gray)
+                            pyautogui.click(730, 325)
+                            pyautogui.click(785, 795)
+                            pyautogui.click(910, 645)
 
+                        # 3 Tab
                         pyautogui.click(840, 320)
-                        pyautogui.click(820, 500)
-                        pyautogui.click(900, 720)
+                        todayBtnColor = pyautogui.pixel(870, 495)
+                        if (todayBtnColor != (143, 0, 0)) : # not red
+                            pyautogui.click(820, 500)
+
+                        fiveDaysBtnColor = pyautogui.pixel(930, 710)
+                        if (fiveDaysBtnColor != (56, 56, 56)) : # active
+                            pyautogui.click(900, 720)
+
                         pyautogui.click(1000, 320)
                         pyautogui.click(900, 440)
                         pyautogui.click(920, 630)
