@@ -76,6 +76,12 @@ if screen_size_x == 1920 and screen_size_y == 1080:
                         # 3 Tab
                         pyautogui.click(840, 320)
                         todayBtnColor = pyautogui.pixel(870, 495)
+
+                        if (todayBtnColor != (143, 0, 0) and
+                                todayBtnColor != (142, 50, 6)) : # lvl up
+                            time.sleep(5)
+                            todayBtnColor = pyautogui.pixel(870, 495)
+
                         if (todayBtnColor != (143, 0, 0)) : # not red
                             pyautogui.click(820, 500)
 
@@ -83,6 +89,7 @@ if screen_size_x == 1920 and screen_size_y == 1080:
                         if (fiveDaysBtnColor != (56, 56, 56)) : # active
                             pyautogui.click(900, 720)
 
+                        # 4 Tab
                         pyautogui.click(1000, 320)
                         pyautogui.click(900, 440)
                         pyautogui.click(920, 630)
@@ -118,7 +125,7 @@ if screen_size_x == 1920 and screen_size_y == 1080:
                         cancelBlitzBtnColor = pyautogui.pixel(1260, 520)
                         if (blitzBtnColor[1] > 90 and cancelBlitzBtnColor[0] < 200) :
                             pyautogui.click(1240, 640)
-                            pyautogui.click(970, 480)
+                            pyautogui.doubleClick(970, 480)
                             pyautogui.write('99')
                             pyautogui.click(1000, 525)
                             pyautogui.click(900, 640)
