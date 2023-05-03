@@ -74,13 +74,12 @@ if screen_size_x == 1920 and screen_size_y == 1080:
                             pyautogui.click(910, 645)
 
                         # 3 Tab
+                        thirdTabColor = pyautogui.pixel(900, 320)
+                        if (thirdTabColor != (65, 18, 12)):  # lvl up
+                            time.sleep(4)
+
                         pyautogui.click(840, 320)
                         todayBtnColor = pyautogui.pixel(870, 495)
-
-                        if (todayBtnColor != (143, 0, 0) and
-                                todayBtnColor != (142, 50, 6)) : # lvl up
-                            time.sleep(5)
-                            todayBtnColor = pyautogui.pixel(870, 495)
 
                         if (todayBtnColor != (143, 0, 0)) : # not red
                             pyautogui.click(820, 500)
