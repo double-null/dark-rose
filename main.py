@@ -141,6 +141,12 @@ if screen_size_x == 1920 and screen_size_y == 1080:
                                 if (command[0] == 'click'):
                                     pyautogui.click(int(command[1]), int(command[2]))
 
+                                if (command[0] == 'double'):
+                                    pyautogui.doubleClick(int(command[1]), int(command[2]))
+
+                                if (command[0] == 'write'):
+                                    pyautogui.write(command[1])
+
                                 if (command[0] == 'wait'):
                                     time.sleep(int(command[1]))
 
