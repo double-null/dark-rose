@@ -1,10 +1,17 @@
 # Dark Rose Clicker
 
+### Requirements
+
+- Python 3.12
+- PyAutoGUI
+- Pillow
+- OpenCV 
+
 ### Запуск
 
 1. Перед запуском в "белочке" отключить подсказки адресной строки.
 
-```sh
+```
 Настройки > Адресная Панель > Включить автозаполнение
 ```
 2. Убедиться, что кодировка стоит английская. (Баг Windows с потерей символов)
@@ -42,5 +49,5 @@ test@provider.loc:password:77.78.99.100
 
 Компиляция под Windows:
 ```sh
-$ auto-py-to-exe
+$ pyinstaller --onefile --icon=ico.icon main.py
 ```
