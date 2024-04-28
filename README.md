@@ -49,5 +49,5 @@ test@provider.loc:password:77.78.99.100
 
 Компиляция под Windows:
 ```sh
-$ pyinstaller --onefile --icon=ico.icon main.py
+$ pyinstaller --onefile --icon=icon.ico main.py
 ```
