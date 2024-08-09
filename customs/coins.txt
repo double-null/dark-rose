@@ -1,0 +1,16 @@
+image coins.png
+click 1000 525
+click 1000 600
+click 1000 675
+click 1000 740
+click 1000 815
+click 1435 815
+click 1435 815
+click 1435 815
+click 1435 815
+click 1435 815
+click 1000 525
+click 1000 600
+click 1000 675
+click 1000 740
+click 1000 815

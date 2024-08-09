@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+from helpers.monolog import Monolog
 
 from helpers.site import Site
 import pyautogui
@@ -10,6 +11,8 @@ actions = config['actions']
 
 pyautogui.FAILSAFE = False
 pyautogui.PAUSE = float(config['speed'])
+
+monolog = Monolog()
 
 screen_size_x, screen_size_y = pyautogui.size()
 if screen_size_x == 1920 and screen_size_y == 1080:
@@ -39,8 +42,8 @@ if screen_size_x == 1920 and screen_size_y == 1080:
                     while start_time < finish_time:
                         try:
                             cryptIcon = pyautogui.locateOnScreen(
-                                "images/crypt.png",
-                                region=(1200, 90, 1600, 150),
+                                "images/alchemy.png",
+                                region=(900, 90, 1600, 300),
                                 confidence=0.7
                             )
                             loading = 1
@@ -71,6 +74,9 @@ if screen_size_x == 1920 and screen_size_y == 1080:
                         if int(actions['daily']) == 1:
                             pyautogui.click(1800, 210)
                             pyautogui.click(580, 520)
+
+                            if (pyautogui.pixel(1200, 710) == (78, 18, 0)) :
+                                pyautogui.click(1225, 700)
 
                             # 2 Tab
                             secondTabColor = pyautogui.pixel(777, 320)
@@ -112,28 +118,38 @@ if screen_size_x == 1920 and screen_size_y == 1080:
 
                         if int(actions['crypt']) == 1:
                             # Start crypt
-                            pyautogui.click(cryptIcon)
-                            time.sleep(0.5)
 
-                            # Get reward
-                            rewardBtnColor = pyautogui.pixel(880, 525)
-                            if rewardBtnColor[1] > 90 :
-                                pyautogui.click(880, 525)
-                                time.sleep(3)
+                            try:
+                                cryptIcon = pyautogui.locateOnScreen(
+                                    "images/crypt.png",
+                                    region=(1200, 90, 1600, 150),
+                                    confidence=0.7
+                                )
 
-                            # Install crypt
-                            blitzBtnColor = pyautogui.pixel(1280, 625)
-                            cancelBlitzBtnColor = pyautogui.pixel(1260, 520)
-                            if (blitzBtnColor[1] > 90 and cancelBlitzBtnColor[0] < 200) :
-                                pyautogui.click(1240, 640)
-                                pyautogui.doubleClick(970, 480)
-                                pyautogui.write('99')
-                                pyautogui.click(1000, 525)
-                                pyautogui.click(900, 640)
+                                pyautogui.click(cryptIcon)
+                                time.sleep(0.5)
 
-                            # Close crypt
-                            pyautogui.click(1315, 320)
+                                # Get reward
+                                rewardBtnColor = pyautogui.pixel(880, 525)
+                                if rewardBtnColor[1] > 90:
+                                    pyautogui.click(880, 525)
+                                    time.sleep(3)
 
+                                # Install crypt
+                                blitzBtnColor = pyautogui.pixel(1280, 625)
+                                cancelBlitzBtnColor = pyautogui.pixel(1260, 520)
+                                if (blitzBtnColor[1] > 90 and cancelBlitzBtnColor[0] < 200):
+                                    pyautogui.click(1240, 640)
+                                    pyautogui.doubleClick(970, 480)
+                                    pyautogui.write('99')
+                                    pyautogui.click(1000, 525)
+                                    pyautogui.click(900, 640)
+
+                                # Close crypt
+                                pyautogui.click(1315, 320)
+                                break
+                            except pyautogui.ImageNotFoundException:
+                                continue
 
                         if int(actions['custom']) == 1:
                             with open('custom.txt') as custom_file:
@@ -158,6 +174,11 @@ if screen_size_x == 1920 and screen_size_y == 1080:
                                             pyautogui.click(image)
                                         except pyautogui.ImageNotFoundException:
                                             print('Image', command[1], 'not found')
+                    else:
+                        if (pyautogui.pixel(110, 170) == (6, 102, 18)) :
+                            error = 'LOW LEVEL '+ data[0] + '(' + server + ')'
+                            monolog.log('fails', error)
+
 
                 # Logout
                 site.logout()
