@@ -9,6 +9,4 @@ def load_config() :
         'speed': config['MAIN']['speed_click'],
         'speed_load': int(config['MAIN']['speed_load']),
         'actions': config['ACTIONS'],
-        'starter': config['STARTER'],
-        'system': config['SYSTEM'],
     }

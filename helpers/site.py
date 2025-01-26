@@ -10,6 +10,9 @@ class Site:
         pass
 
     def login(self, username, password):
+
+        config = Config().getSection('MAIN')
+
         sec = 0
         while (sec < 20):
 
@@ -20,13 +23,14 @@ class Site:
                 pyautogui.write(password)
                 pyautogui.press('enter')
 
+                time.sleep(int(config.get('speed_auth')))
+
                 if (pyautogui.pixel(500, 850) == (51, 122, 183)):
                     return True
                 else:
                     return False
 
             sec = sec + 2
-            time.sleep(2)
 
         return False
 
@@ -34,3 +38,6 @@ class Site:
         pyautogui.click(625, 55)
         pyautogui.write(self.startPageUrl + '/user/logout')
         pyautogui.press('enter')
+
+        config = Config().getSection('MAIN')
+        time.sleep(int(config.get('speed_auth')))

@@ -20,7 +20,7 @@
 
 4. Отредактировать файл config.ini
 
-5. Заполнить accounts.txt аккаунтами по маске:
+5. Создать файл accounts.txt и заполнить аккаунтами по маске:
 
 ```
 {login}:{password}:{server1}.{server2}.{serverN}

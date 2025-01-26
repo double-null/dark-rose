@@ -1,7 +1,8 @@
 from datetime import datetime, timedelta
-from helpers.monolog import Monolog
 
+from helpers.monolog import Monolog
 from helpers.site import Site
+
 import pyautogui
 import time
 import components
@@ -13,6 +14,8 @@ pyautogui.FAILSAFE = False
 pyautogui.PAUSE = float(config['speed'])
 
 monolog = Monolog()
+
+print("VERSION: 1.2.0")
 
 screen_size_x, screen_size_y = pyautogui.size()
 if screen_size_x == 1920 and screen_size_y == 1080:
@@ -67,7 +70,7 @@ if screen_size_x == 1920 and screen_size_y == 1080:
                                 pyautogui.click(1880, 130)
                                 time.sleep(1)
                             except pyautogui.ImageNotFoundException:
-                                print('Flowers failed');
+                                print('Flowers failed')
 
 
 
@@ -174,6 +177,9 @@ if screen_size_x == 1920 and screen_size_y == 1080:
                                             pyautogui.click(image)
                                         except pyautogui.ImageNotFoundException:
                                             print('Image', command[1], 'not found')
+
+                        monolog.log('done', data[0] + ' ' + server)
+
                     else:
                         if (pyautogui.pixel(110, 170) == (6, 102, 18)) :
                             error = 'LOW LEVEL '+ data[0] + '(' + server + ')'
@@ -185,4 +191,4 @@ if screen_size_x == 1920 and screen_size_y == 1080:
 else:
     print("Error display")
 
-input('Press ENTER to exit')
+input("Press ENTER to exit")
