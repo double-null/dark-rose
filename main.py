@@ -2,6 +2,7 @@ from datetime import datetime, timedelta
 
 from helpers.monolog import Monolog
 from helpers.site import Site
+from helpers.image import Image
 
 import pyautogui
 import time
@@ -13,9 +14,10 @@ actions = config['actions']
 pyautogui.FAILSAFE = False
 pyautogui.PAUSE = float(config['speed'])
 
+image = Image()
 monolog = Monolog()
 
-print("VERSION: 1.2.0")
+print("VERSION: 1.2.1")
 
 screen_size_x, screen_size_y = pyautogui.size()
 if screen_size_x == 1920 and screen_size_y == 1080:
@@ -121,14 +123,9 @@ if screen_size_x == 1920 and screen_size_y == 1080:
 
                         if int(actions['crypt']) == 1:
                             # Start crypt
+                            cryptIcon = image.search("images/crypt.png",(1200, 90, 1600, 150))
 
-                            try:
-                                cryptIcon = pyautogui.locateOnScreen(
-                                    "images/crypt.png",
-                                    region=(1200, 90, 1600, 150),
-                                    confidence=0.7
-                                )
-
+                            if (cryptIcon != None) :
                                 pyautogui.click(cryptIcon)
                                 time.sleep(0.5)
 
@@ -150,9 +147,8 @@ if screen_size_x == 1920 and screen_size_y == 1080:
 
                                 # Close crypt
                                 pyautogui.click(1315, 320)
-                                break
-                            except pyautogui.ImageNotFoundException:
-                                continue
+
+
 
                         if int(actions['custom']) == 1:
                             with open('custom.txt') as custom_file:
@@ -184,7 +180,6 @@ if screen_size_x == 1920 and screen_size_y == 1080:
                         if (pyautogui.pixel(110, 170) == (6, 102, 18)) :
                             error = 'LOW LEVEL '+ data[0] + '(' + server + ')'
                             monolog.log('fails', error)
-
 
                 # Logout
                 site.logout()
