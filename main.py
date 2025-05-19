@@ -17,7 +17,16 @@ pyautogui.PAUSE = float(config['speed'])
 image = Image()
 monolog = Monolog()
 
-print("VERSION: 1.2.1")
+print("VERSION: 1.3.0")
+
+delayedStart = config['delayed_start']
+nowTime = datetime.now().timestamp()
+startTime = datetime.strptime(delayedStart, "%d.%m.%Y %H:%M").timestamp()
+respite = startTime - nowTime
+
+if (respite > 0) :
+    time.sleep(respite)
+
 
 screen_size_x, screen_size_y = pyautogui.size()
 if screen_size_x == 1920 and screen_size_y == 1080:

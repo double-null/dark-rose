@@ -8,5 +8,6 @@ def load_config() :
         'dk_server': config['SERVER_LINKS']['dk_server'],
         'speed': config['MAIN']['speed_click'],
         'speed_load': int(config['MAIN']['speed_load']),
+        'delayed_start': config['MAIN']['delayed_start'],
         'actions': config['ACTIONS'],
     }
